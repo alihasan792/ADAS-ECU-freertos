@@ -23,6 +23,9 @@ lcov.info
 # Test artifacts
 test_logs/
 test_results/
+reports/
+!reports/.gitkeep
+
 
 # Data and plots
 logs/

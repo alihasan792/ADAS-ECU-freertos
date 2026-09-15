@@ -1,0 +1,30 @@
+{
+  "test_timeout_ms": 5000,
+  "log_level": "INFO",
+  "reports_directory": "reports",
+  "default_suite": "smoke",
+  "can_interface": "vcan0",
+  "can_ids": {
+    "lidar": 256,
+    "radar": 512,
+    "camera": 592,
+    "ultrasonic": 768,
+    "brake": 1024
+  },
+  "timing_deadlines_ms": {
+    "sensor_task": 10,
+    "compute_task": 20,
+    "watchdog_task": 5,
+    "compute_deadline": 50
+  },
+  "safety_thresholds": {
+    "ttc_warning_sec": 3.0,
+    "ttc_critical_sec": 1.5,
+    "distance_critical_meters": 10.0
+  },
+  "tolerances": {
+    "kalman_position_m": 0.5,
+    "kalman_velocity_mps": 0.5,
+    "timing_us": 1000
+  }
+}

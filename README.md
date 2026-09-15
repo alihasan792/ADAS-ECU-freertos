@@ -17,6 +17,56 @@ This project implements a production-inspired embedded control unit (ECU) for Ad
 - **SocketCAN** integration for virtual CAN bus communication
 - **Safety watchdog** with deadline enforcement
 - **MISRA-friendly C++17** (embedded subset)
+---
+
+## 🧪 Automated Validation & Test Harness (CLI-First)
+
+> **A CLI-first automated validation and testing framework for an ADAS ECU environment, providing reproducible test execution, sensor/CAN validation, fault injection, structured assertions, logging, failure evidence, and machine-readable test reports.**
+
+The framework coordinates an 8-stage verification lifecycle:
+```text
+Stimulus  ──>  ADAS ECU Engine  ──>  Observed Output  ──>  Validation  ──>  Evidence  ──>  Report
+```
+
+### Quick Start: Running Tests
+On Windows:
+```powershell
+# Run all 19 automated test cases across 5 suites
+.\adas-test.bat run --all
+
+# Run specific suite
+.\adas-test.bat run --suite smoke
+.\adas-test.bat run --suite safety
+.\adas-test.bat run --suite can
+.\adas-test.bat run --suite functional
+.\adas-test.bat run --suite fault
+
+# Run regression suite
+.\adas-test.bat regression
+
+# Filter by test ID or priority
+.\adas-test.bat run --test TC-SAF-001
+.\adas-test.bat run --priority critical
+
+# Re-run only previously failed tests
+.\adas-test.bat run --failed
+
+# Interactive 10-option menu
+.\adas-test.bat interactive
+```
+
+On Linux / macOS:
+```bash
+./adas-test run --all
+./adas-test regression
+```
+
+### Generated Test Artifacts
+Every run generates multi-format reporting stored in `reports/runs/<run_id>/`:
+- **Interactive HTML Dashboard**: `reports/latest_report.html` (viewable in any web browser without server)
+- **Machine-Readable JSON Summary**: `reports/runs/<run_id>/summary.json`
+- **JUnit XML Report**: `reports/runs/<run_id>/junit.xml` (instantly ingested by CI/CD like GitHub Actions and Jenkins)
+- **Structured Failure Evidence**: On any test failure, creates `evidence/<test_id>/` with `execution.log`, `input.json`, `output.json`, and `result.json`.
 
 ---
 
