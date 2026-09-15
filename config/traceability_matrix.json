@@ -1,0 +1,71 @@
+{
+  "project": "ADAS ECU Automated Validation & Test Harness",
+  "version": "1.0.0",
+  "mappings": [
+    {
+      "requirement_id": "FR-1.1",
+      "description": "System SHALL read Lidar position data (x, y) from CAN ID 0x100",
+      "test_cases": ["TC-SMK-002", "TC-CAN-001"]
+    },
+    {
+      "requirement_id": "FR-1.2",
+      "description": "System SHALL read Radar velocity data (vx, vy) from CAN ID 0x200",
+      "test_cases": ["TC-SMK-002", "TC-CAN-001"]
+    },
+    {
+      "requirement_id": "FR-1.3",
+      "description": "Sensor task SHALL execute with 10ms period (100 Hz)",
+      "test_cases": ["TC-SMK-001", "TC-CAN-001"]
+    },
+    {
+      "requirement_id": "FR-2.1",
+      "description": "System SHALL implement Kalman filter for 2D position and velocity",
+      "test_cases": ["TC-FUN-001"]
+    },
+    {
+      "requirement_id": "FR-2.2",
+      "description": "State vector SHALL contain [x, y, vx, vy]",
+      "test_cases": ["TC-FUN-001"]
+    },
+    {
+      "requirement_id": "FR-3.1",
+      "description": "Watchdog SHALL monitor compute task execution time",
+      "test_cases": ["TC-SAF-001", "TC-SAF-003"]
+    },
+    {
+      "requirement_id": "FR-3.3",
+      "description": "System SHALL enforce 50ms deadline for compute task",
+      "test_cases": ["TC-SAF-001"]
+    },
+    {
+      "requirement_id": "FR-3.4",
+      "description": "System SHALL trigger emergency brake on deadline violation",
+      "test_cases": ["TC-SAF-001", "TC-SAF-002"]
+    },
+    {
+      "requirement_id": "FR-3.5",
+      "description": "System SHALL enter SAFE state on deadline violation",
+      "test_cases": ["TC-SAF-001", "TC-SAF-003"]
+    },
+    {
+      "requirement_id": "NFR-2.3",
+      "description": "Queue overflow SHALL not cause system failure",
+      "test_cases": ["TC-SMK-003"]
+    },
+    {
+      "requirement_id": "NFR-2.4",
+      "description": "CAN errors SHALL not crash sensor task",
+      "test_cases": ["TC-FLT-004", "TC-CAN-002"]
+    },
+    {
+      "requirement_id": "NFR-3.3",
+      "description": "Emergency brake SHALL activate within 10ms of violation",
+      "test_cases": ["TC-FUN-003", "TC-SAF-002", "TC-CAN-004"]
+    },
+    {
+      "requirement_id": "NFR-3.4",
+      "description": "System state SHALL be atomic (thread-safe)",
+      "test_cases": ["TC-SMK-001", "TC-SAF-003", "TC-SAF-004"]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# ADAS ECU Automated Test Harness Unix/Linux Wrapper
+# Dispatches execution to Python CLI
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+if command -v python3 >/dev/null 2>&1; then
+    exec python3 "${SCRIPT_DIR}/cli/adas_test.py" "$@"
+elif command -v python >/dev/null 2>&1; then
+    exec python "${SCRIPT_DIR}/cli/adas_test.py" "$@"
+else
+    echo "[ERROR] python3 or python not found in PATH." >&2
+    exit 3
+fi
